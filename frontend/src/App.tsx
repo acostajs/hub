@@ -7,9 +7,20 @@ import {
 } from "./context/LanguageContext";
 import "./index.css";
 
+function getLocale(lang: Language) {
+  switch (lang) {
+    case "fr":
+      return locales.fr;
+    case "es":
+      return locales.es;
+    default:
+      return locales.en;
+  }
+}
+
 function AppContent() {
   const { language, setLanguage } = useLanguage();
-  const t = locales[language];
+  const t = getLocale(language);
 
   function handleLanguageChange(lang: Language) {
     setLanguage(lang);
