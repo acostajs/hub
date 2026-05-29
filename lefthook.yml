@@ -3,7 +3,7 @@ pre-commit:
   commands:
     frontend-biome:
       glob: "frontend/**/*.{js,ts,jsx,tsx,json}"
-      run: bunx biome check --files-ignore-unknown=true --no-errors-on-unmatched {staged_files}
+      run: bun --cwd frontend lint
     frontend-typecheck:
       glob: "frontend/**/*.{ts,tsx}"
       run: bun run --cwd frontend tsc --noEmit
