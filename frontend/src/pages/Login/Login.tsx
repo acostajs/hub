@@ -4,7 +4,6 @@ import { loginLocales } from "./Login.locales";
 
 export type LoginProps = {
     onNavigate: (page: "home" | "register" | "portal") => void;
-    onLoginSuccess: () => void;
 };
 
 function getLoginLocale(lang: "en" | "fr" | "es") {
@@ -54,7 +53,7 @@ export function Login(props: LoginProps) {
             setSuccess(t.successMock);
 
             setTimeout(() => {
-                props.onLoginSuccess();
+                props.onNavigate("portal");
             }, 1000);
         }, 1500);
     }
