@@ -61,8 +61,8 @@ export function Login(props: LoginProps) {
 
     if (isLoading) {
         return (
-            <div className="layout-shell max-w-lg mx-auto py-12">
-                <div className="card-surface flex flex-col gap-space-md">
+            <main className="layout-shell max-w-lg mx-auto py-12">
+                <article className="card-surface flex flex-col gap-space-md">
                     {/* Header Skeleton */}
                     <div className="flex flex-col gap-space-sm border-b border-border-primary pb-4">
                         <div className="h-8 w-1/2 bg-current opacity-30 animate-pulse" />
@@ -83,14 +83,14 @@ export function Login(props: LoginProps) {
 
                     {/* Button Skeleton */}
                     <div className="h-10 w-full bg-current opacity-40 animate-pulse mt-4" />
-                </div>
-            </div>
+                </article>
+            </main>
         );
     }
 
     return (
-        <div className="layout-shell max-w-lg mx-auto py-12">
-            <div className="card-surface flex flex-col gap-space-md">
+        <main className="layout-shell max-w-lg mx-auto py-12">
+            <article className="card-surface flex flex-col gap-space-md">
                 {/* Header Title */}
                 <header className="flex flex-col gap-space-sm border-b border-border-primary pb-4">
                     <h1 className="text-heading-lg">{t.title}</h1>
@@ -177,7 +177,7 @@ export function Login(props: LoginProps) {
                         {t.backHome}
                     </button>
                 </footer>
-            </div>
-        </div>
+            </article>
+        </main>
     );
 }

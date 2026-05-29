@@ -90,33 +90,41 @@ function AppContent() {
                         className="flex gap-space-sm"
                         aria-label="Language Selector"
                     >
-                        <button
-                            type="button"
-                            onClick={() => {
-                                handleLanguageChange("en");
-                            }}
-                            className={`btn-primary ${language === "en" ? "opacity-100" : "opacity-50"}`}
-                        >
-                            {t.langEn}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                handleLanguageChange("fr");
-                            }}
-                            className={`btn-primary ${language === "fr" ? "opacity-100" : "opacity-50"}`}
-                        >
-                            {t.langFr}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                handleLanguageChange("es");
-                            }}
-                            className={`btn-primary ${language === "es" ? "opacity-100" : "opacity-50"}`}
-                        >
-                            {t.langEs}
-                        </button>
+                        <ul className="flex gap-space-sm list-none p-0 m-0">
+                            <li>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        handleLanguageChange("en");
+                                    }}
+                                    className={`btn-primary ${language === "en" ? "opacity-100" : "opacity-50"}`}
+                                >
+                                    {t.langEn}
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        handleLanguageChange("fr");
+                                    }}
+                                    className={`btn-primary ${language === "fr" ? "opacity-100" : "opacity-50"}`}
+                                >
+                                    {t.langFr}
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        handleLanguageChange("es");
+                                    }}
+                                    className={`btn-primary ${language === "es" ? "opacity-100" : "opacity-50"}`}
+                                >
+                                    {t.langEs}
+                                </button>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
             </header>
@@ -130,22 +138,31 @@ function AppContent() {
                     </div>
 
                     <div className="flex flex-col gap-space-sm mt-6">
-                        <div className="grid grid-cols-2 gap-space-sm">
-                            <button
-                                type="button"
-                                onClick={() => setPage("login")}
-                                className="btn-primary"
-                            >
-                                {t.loginAction}
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setPage("register")}
-                                className="btn-primary"
-                            >
-                                {t.registerAction}
-                            </button>
-                        </div>
+                        <nav
+                            aria-label="Account Access Actions"
+                            className="w-full"
+                        >
+                            <ul className="grid grid-cols-2 gap-space-sm list-none p-0 m-0">
+                                <li className="w-full">
+                                    <button
+                                        type="button"
+                                        onClick={() => setPage("login")}
+                                        className="btn-primary w-full"
+                                    >
+                                        {t.loginAction}
+                                    </button>
+                                </li>
+                                <li className="w-full">
+                                    <button
+                                        type="button"
+                                        onClick={() => setPage("register")}
+                                        className="btn-primary w-full"
+                                    >
+                                        {t.registerAction}
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
 
                         {/* SSO Mock Action */}
                         <button
