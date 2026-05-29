@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { APITester } from "./APITester";
 import { locales } from "./App.locales";
 import {
@@ -6,6 +7,9 @@ import {
   useLanguage,
 } from "./context/LanguageContext";
 import "./index.css";
+import { Portal } from "./pages/Portal/Portal";
+
+export type Page = "home" | "login" | "register" | "portal";
 
 function getLocale(lang: Language) {
   switch (lang) {
@@ -18,12 +22,80 @@ function getLocale(lang: Language) {
   }
 }
 
+function hasAuthCookie(): boolean {
+  if (typeof document === "undefined") {
+    return false;
+  }
+  return document.cookie
+    .split(";")
+    .some((c) => c.trim().startsWith("hub_session="));
+}
+
+function setMockAuthCookie() {
+  if (typeof document !== "undefined") {
+    // Set cookie scoped to root domain for SSO simulation
+    document.cookie =
+      "hub_session=mock_sso_session_token_123; Path=/; Max-Age=3600;";
+  }
+}
+
+function deleteAuthCookie() {
+  if (typeof document !== "undefined") {
+    document.cookie =
+      "hub_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  }
+}
+
 function AppContent() {
   const { language, setLanguage } = useLanguage();
+  const [page, setPage] = useState<Page>("home");
   const t = getLocale(language);
+
+  // Session Interception: check cookie on startup
+  useEffect(() => {
+    if (hasAuthCookie()) {
+      setPage("portal");
+    }
+  }, []);
 
   function handleLanguageChange(lang: Language) {
     setLanguage(lang);
+  }
+
+  function handleLogout() {
+    deleteAuthCookie();
+    setPage("home");
+  }
+
+  function handleMockLogin() {
+    setMockAuthCookie();
+    setPage("portal");
+  }
+
+  // Router matching
+  if (page === "portal") {
+    return <Portal onLogout={handleLogout} />;
+  }
+
+  if (page === "login" || page === "register") {
+    return (
+      <div className="layout-shell max-w-lg mx-auto py-16">
+        <div className="card-surface flex flex-col gap-space-md text-center">
+          <h1 className="text-heading-lg">{t.title}</h1>
+          <p className="text-body font-mono">
+            {page.toUpperCase()} VIEW - Phase 1.{page === "login" ? "4" : "3"}{" "}
+            placeholder
+          </p>
+          <button
+            type="button"
+            onClick={() => setPage("home")}
+            className="btn-primary"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -69,16 +141,39 @@ function AppContent() {
         </div>
       </header>
 
-      {/* Main Feature Workspace (Clean functional columns) */}
+      {/* Main Grid (Homepage view) */}
       <main className="grid md:grid-cols-2 gap-space-md">
         <section className="card-surface flex flex-col gap-space-md justify-between">
           <div className="flex flex-col gap-space-sm">
-            <h2 className="text-heading-md">{t.title}</h2>
+            <h2 className="text-heading-md">{t.welcomeMessage}</h2>
             <p className="text-body">{t.description}</p>
           </div>
-          <div>
-            <button type="button" className="btn-primary w-full mt-4">
-              {t.buttonLabel}
+
+          <div className="flex flex-col gap-space-sm mt-6">
+            <div className="grid grid-cols-2 gap-space-sm">
+              <button
+                type="button"
+                onClick={() => setPage("login")}
+                className="btn-primary"
+              >
+                {t.loginAction}
+              </button>
+              <button
+                type="button"
+                onClick={() => setPage("register")}
+                className="btn-primary"
+              >
+                {t.registerAction}
+              </button>
+            </div>
+
+            {/* SSO Mock Action */}
+            <button
+              type="button"
+              onClick={handleMockLogin}
+              className="btn-primary opacity-80 border-dashed"
+            >
+              {t.mockLoginAction}
             </button>
           </div>
         </section>

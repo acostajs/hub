@@ -9,6 +9,11 @@ export type Translations = {
   langEn: string;
   langFr: string;
   langEs: string;
+  loginAction: string;
+  registerAction: string;
+  welcomeMessage: string;
+  featuresHeader: string;
+  mockLoginAction: string;
 };
 
 export const locales: Record<Language, Translations> = {
@@ -22,6 +27,11 @@ export const locales: Record<Language, Translations> = {
     langEn: "EN",
     langFr: "FR",
     langEs: "ES",
+    loginAction: "Sign In",
+    registerAction: "Register",
+    welcomeMessage: "One account. All your study tools.",
+    featuresHeader: "Universally Connected Workspace",
+    mockLoginAction: "Mock SSO Session",
   },
   fr: {
     title: "Hub Étudiant",
@@ -33,6 +43,11 @@ export const locales: Record<Language, Translations> = {
     langEn: "EN",
     langFr: "FR",
     langEs: "ES",
+    loginAction: "Se Connecter",
+    registerAction: "S'inscrire",
+    welcomeMessage: "Un seul compte. Tous vos outils d'étude.",
+    featuresHeader: "Espace de Travail Connecté Universel",
+    mockLoginAction: "Session SSO Fictive",
   },
   es: {
     title: "Hub de Estudiantes",
@@ -44,5 +59,10 @@ export const locales: Record<Language, Translations> = {
     langEn: "EN",
     langFr: "FR",
     langEs: "ES",
+    loginAction: "Iniciar Sesión",
+    registerAction: "Registrarse",
+    welcomeMessage: "Una cuenta. Todas tus herramientas de estudio.",
+    featuresHeader: "Espacio de Trabajo Conectado Universal",
+    mockLoginAction: "Simular Sesión SSO",
   },
 };
