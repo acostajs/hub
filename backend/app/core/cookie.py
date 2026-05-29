@@ -9,7 +9,7 @@ def set_sso_cookie(response: Response, token: str, max_age: int | None = None) -
     Scoped to the wildcard domain.
     """
     response.set_cookie(
-        key="session_token",
+        key="hub_session",
         value=token,
         domain=settings.COOKIE_DOMAIN,
         httponly=True,
@@ -22,7 +22,7 @@ def set_sso_cookie(response: Response, token: str, max_age: int | None = None) -
 def delete_sso_cookie(response: Response) -> None:
     """Clear the session token cookie from the wildcard domain."""
     response.delete_cookie(
-        key="session_token",
+        key="hub_session",
         domain=settings.COOKIE_DOMAIN,
         httponly=True,
         secure=True,
