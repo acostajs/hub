@@ -67,8 +67,8 @@ export function Register(props: RegisterProps) {
     }
 
     return (
-        <div className="layout-shell max-w-lg mx-auto py-12">
-            <div className="card-surface flex flex-col gap-space-md">
+        <main className="layout-shell max-w-lg mx-auto py-12">
+            <article className="card-surface flex flex-col gap-space-md">
                 {/* Title Block */}
                 <header className="flex flex-col gap-space-sm border-b border-border-primary pb-4">
                     <h1 className="text-heading-lg">{t.title}</h1>
@@ -193,7 +193,7 @@ export function Register(props: RegisterProps) {
                         {t.backHome}
                     </button>
                 </footer>
-            </div>
-        </div>
+            </article>
+        </main>
     );
 }

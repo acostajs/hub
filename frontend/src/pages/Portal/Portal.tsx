@@ -21,7 +21,7 @@ export function Portal(props: PortalProps) {
     const t = getPortalLocale(language);
 
     return (
-        <div className="layout-shell max-w-4xl mx-auto py-12">
+        <main className="layout-shell max-w-4xl mx-auto py-12">
             {/* Portal Header */}
             <header className="card-surface flex justify-between items-center flex-wrap gap-space-sm mb-6">
                 <div>
@@ -38,9 +38,9 @@ export function Portal(props: PortalProps) {
             </header>
 
             {/* Grid of Microservice Launcher Cards */}
-            <main className="grid md:grid-cols-2 gap-space-md">
+            <ul className="grid md:grid-cols-2 gap-space-md list-none p-0 m-0">
                 {/* PicoCards Launcher */}
-                <section className="card-surface flex flex-col justify-between gap-space-md">
+                <li className="card-surface flex flex-col justify-between gap-space-md">
                     <div className="flex flex-col gap-space-sm">
                         <h2 className="text-heading-md">{t.picocardsTitle}</h2>
                         <p className="text-body">{t.picocardsDesc}</p>
@@ -59,10 +59,10 @@ export function Portal(props: PortalProps) {
                             {t.picocardsTitle} &rarr;
                         </a>
                     </div>
-                </section>
+                </li>
 
                 {/* Napuccino Launcher */}
-                <section className="card-surface flex flex-col justify-between gap-space-md">
+                <li className="card-surface flex flex-col justify-between gap-space-md">
                     <div className="flex flex-col gap-space-sm">
                         <h2 className="text-heading-md">{t.napuccinoTitle}</h2>
                         <p className="text-body">{t.napuccinoDesc}</p>
@@ -81,8 +81,8 @@ export function Portal(props: PortalProps) {
                             {t.napuccinoTitle} &rarr;
                         </a>
                     </div>
-                </section>
-            </main>
-        </div>
+                </li>
+            </ul>
+        </main>
     );
 }
