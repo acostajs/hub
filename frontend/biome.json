@@ -12,7 +12,8 @@
         "noUnusedFunctionParameters": "off"
       },
       "suspicious": {
-        "noAssignInExpressions": "off"
+        "noAssignInExpressions": "off",
+        "noDocumentCookie": "off"
       }
     }
   },
