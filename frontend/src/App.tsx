@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { APITester } from "./APITester";
 import { locales } from "./App.locales";
 import {
     type Language,
@@ -10,11 +9,7 @@ import "./index.css";
 import { Login } from "./pages/Login/Login";
 import { Portal } from "./pages/Portal/Portal";
 import { Register } from "./pages/Register/Register";
-import {
-    deleteAuthCookie,
-    hasAuthCookie,
-    setMockAuthCookie,
-} from "./utils/cookie";
+import { deleteAuthCookie, hasAuthCookie } from "./utils/cookie";
 
 export type Page = "home" | "login" | "register" | "portal";
 
@@ -50,11 +45,6 @@ function AppContent() {
         setPage("home");
     }
 
-    function handleMockLogin() {
-        setMockAuthCookie();
-        setPage("portal");
-    }
-
     // Router matching
     if (page === "portal") {
         return <Portal onLogout={handleLogout} />;
@@ -65,12 +55,7 @@ function AppContent() {
     }
 
     if (page === "login") {
-        return (
-            <Login
-                onNavigate={(target) => setPage(target)}
-                onLoginSuccess={handleMockLogin}
-            />
-        );
+        return <Login onNavigate={(target) => setPage(target)} />;
     }
 
     return (
@@ -129,8 +114,8 @@ function AppContent() {
                 </div>
             </header>
 
-            {/* Main Grid (Homepage view) */}
-            <main className="grid md:grid-cols-2 gap-space-md">
+            {/* Main Layout (Homepage view) */}
+            <main className="max-w-2xl mx-auto w-full">
                 <section className="card-surface flex flex-col gap-space-md justify-between">
                     <div className="flex flex-col gap-space-sm">
                         <h2 className="text-heading-md">{t.welcomeMessage}</h2>
@@ -163,22 +148,7 @@ function AppContent() {
                                 </li>
                             </ul>
                         </nav>
-
-                        {/* SSO Mock Action */}
-                        <button
-                            type="button"
-                            onClick={handleMockLogin}
-                            className="btn-primary opacity-80 border-dashed"
-                        >
-                            {t.mockLoginAction}
-                        </button>
                     </div>
-                </section>
-
-                {/* API Central Gateway Diagnostics */}
-                <section className="card-surface flex flex-col gap-space-md">
-                    <h2 className="text-heading-md">{t.apiTesterTitle}</h2>
-                    <APITester />
                 </section>
             </main>
         </div>
