@@ -1,6 +1,27 @@
+# Project Specific Ignores
 .docs/*.md
 .docs
 .idea
 .venv
 node_modules
 .env
+
+# MacOS / OS X
+.DS_Store
+
+# Python / uv / Virtualenvs
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+backend/.venv/
+
+# Frontend / Bun / Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.cache/
+frontend/*.tsbuildinfo
