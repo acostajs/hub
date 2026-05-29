@@ -1,116 +1,116 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: var(--bg-primary);
-  --color-text-primary: var(--text-primary);
-  --color-border-primary: var(--border-primary);
+    --color-bg-primary: var(--bg-primary);
+    --color-text-primary: var(--text-primary);
+    --color-border-primary: var(--border-primary);
 
-  --spacing-space-sm: 0.5rem;
-  --spacing-space-md: 1rem;
-  --spacing-space-lg: 2rem;
+    --spacing-space-sm: 0.5rem;
+    --spacing-space-md: 1rem;
+    --spacing-space-lg: 2rem;
 }
 
 @layer base {
-  :root {
-    --bg-primary: #ffffff;
-    --text-primary: #000000;
-    --border-primary: #000000;
-  }
-
-  @media (prefers-color-scheme: dark) {
     :root {
-      --bg-primary: #000000;
-      --text-primary: #ffffff;
-      --border-primary: #ffffff;
+        --bg-primary: #ffffff;
+        --text-primary: #000000;
+        --border-primary: #000000;
     }
-  }
 
-  html,
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family:
-      ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-  }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-primary: #000000;
+            --text-primary: #ffffff;
+            --border-primary: #ffffff;
+        }
+    }
 
-  /* Semantic Typography Scale */
-  .text-heading-lg {
-    font-size: 1.875rem; /* text-3xl */
-    font-weight: 800; /* font-extrabold */
-    text-transform: uppercase;
-    letter-spacing: -0.025em;
-  }
+    html,
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family:
+            ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+    }
 
-  .text-heading-md {
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 700; /* font-bold */
-  }
+    /* Semantic Typography Scale */
+    .text-heading-lg {
+        font-size: 1.875rem; /* text-3xl */
+        font-weight: 800; /* font-extrabold */
+        text-transform: uppercase;
+        letter-spacing: -0.025em;
+    }
 
-  .text-body {
-    font-size: 1rem; /* text-base */
-    font-weight: 400; /* font-normal */
-    line-height: 1.625;
-  }
+    .text-heading-md {
+        font-size: 1.25rem; /* text-xl */
+        font-weight: 700; /* font-bold */
+    }
 
-  /* Reusable Component Primitives (strictly functional monochromatic style) */
-  .layout-shell {
-    min-height: 100vh;
-    padding: var(--spacing-space-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-space-md);
-    box-sizing: border-box;
-  }
+    .text-body {
+        font-size: 1rem; /* text-base */
+        font-weight: 400; /* font-normal */
+        line-height: 1.625;
+    }
 
-  .card-surface {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-primary);
-    padding: var(--spacing-space-md);
-    box-sizing: border-box;
-  }
+    /* Reusable Component Primitives (strictly functional monochromatic style) */
+    .layout-shell {
+        min-height: 100vh;
+        padding: var(--spacing-space-md);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-space-md);
+        box-sizing: border-box;
+    }
 
-  .btn-primary {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    padding: var(--spacing-space-sm) var(--spacing-space-md);
-    font-weight: 700;
-    cursor: pointer;
-    transition:
-      opacity 0.15s ease,
-      transform 0.1s ease;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .card-surface {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-primary);
+        padding: var(--spacing-space-md);
+        box-sizing: border-box;
+    }
 
-  .btn-primary:hover {
-    opacity: 0.9;
-  }
+    .btn-primary {
+        background-color: var(--text-primary);
+        color: var(--bg-primary);
+        border: 1px solid var(--border-primary);
+        padding: var(--spacing-space-sm) var(--spacing-space-md);
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+            opacity 0.15s ease,
+            transform 0.1s ease;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .btn-primary:active {
-    transform: scale(0.98);
-  }
+    .btn-primary:hover {
+        opacity: 0.9;
+    }
 
-  .input-primary {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-primary);
-    padding: var(--spacing-space-sm);
-    font-family: inherit;
-    font-size: 1rem;
-    width: 100%;
-    outline: none;
-    box-sizing: border-box;
-  }
+    .btn-primary:active {
+        transform: scale(0.98);
+    }
 
-  .input-primary:focus {
-    box-shadow: 0 0 0 2px var(--border-primary);
-  }
+    .input-primary {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-primary);
+        padding: var(--spacing-space-sm);
+        font-family: inherit;
+        font-size: 1rem;
+        width: 100%;
+        outline: none;
+        box-sizing: border-box;
+    }
+
+    .input-primary:focus {
+        box-shadow: 0 0 0 2px var(--border-primary);
+    }
 }
