@@ -12,6 +12,7 @@
 
 @layer base {
     :root {
+        color-scheme: light dark;
         --bg-primary: #ffffff;
         --text-primary: #000000;
         --border-primary: #000000;
@@ -23,6 +24,20 @@
             --text-primary: #ffffff;
             --border-primary: #ffffff;
         }
+    }
+
+    html.light {
+        color-scheme: light;
+        --bg-primary: #ffffff;
+        --text-primary: #000000;
+        --border-primary: #000000;
+    }
+
+    html.dark {
+        color-scheme: dark;
+        --bg-primary: #000000;
+        --text-primary: #ffffff;
+        --border-primary: #ffffff;
     }
 
     html,

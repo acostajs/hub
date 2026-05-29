@@ -29,6 +29,56 @@ function AppContent() {
     const [page, setPage] = useState<Page>("home");
     const t = getLocale(language);
 
+    const [theme, setTheme] = useState<"light" | "dark">(() => {
+        const saved = localStorage.getItem("theme");
+        if (saved === "light" || saved === "dark") {
+            return saved;
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    });
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (theme === "dark") {
+            root.classList.remove("light");
+            root.classList.add("dark");
+        } else {
+            root.classList.remove("dark");
+            root.classList.add("light");
+        }
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    useEffect(() => {
+        const hasSavedPreference = localStorage.getItem("theme") !== null;
+        if (hasSavedPreference) return;
+
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handler = (e: MediaQueryListEvent) => {
+            setTheme(e.matches ? "dark" : "light");
+        };
+
+        if (mediaQuery.addEventListener) {
+            mediaQuery.addEventListener("change", handler);
+        } else {
+            mediaQuery.addListener(handler);
+        }
+
+        return () => {
+            if (mediaQuery.removeEventListener) {
+                mediaQuery.removeEventListener("change", handler);
+            } else {
+                mediaQuery.removeListener(handler);
+            }
+        };
+    }, []);
+
+    function toggleTheme() {
+        setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    }
+
     // Session Interception: check cookie on startup
     useEffect(() => {
         if (hasAuthCookie()) {
@@ -75,7 +125,7 @@ function AppContent() {
                         className="flex gap-space-sm"
                         aria-label="Language Selector"
                     >
-                        <ul className="flex gap-space-sm list-none p-0 m-0">
+                        <ul className="flex gap-space-sm list-none p-0 m-0 items-center">
                             <li>
                                 <button
                                     type="button"
@@ -107,6 +157,16 @@ function AppContent() {
                                     className={`btn-primary ${language === "es" ? "opacity-100" : "opacity-50"}`}
                                 >
                                     {t.langEs}
+                                </button>
+                            </li>
+                            <li className="ml-2 border-l border-border-primary pl-2 flex items-center">
+                                <button
+                                    type="button"
+                                    onClick={toggleTheme}
+                                    className="btn-primary opacity-80 hover:opacity-100"
+                                    aria-label={t.themeToggleLabel}
+                                >
+                                    {theme === "dark" ? "☼" : "☾"}
                                 </button>
                             </li>
                         </ul>
