@@ -11,6 +11,7 @@ export type Translations = {
     loginAction: string;
     registerAction: string;
     welcomeMessage: string;
+    themeToggleLabel: string;
 };
 
 export const locales: Record<Language, Translations> = {
@@ -26,6 +27,7 @@ export const locales: Record<Language, Translations> = {
         loginAction: "Sign In",
         registerAction: "Register",
         welcomeMessage: "One account. All your study tools.",
+        themeToggleLabel: "Toggle theme",
     },
     fr: {
         title: "Hub Étudiant",
@@ -39,6 +41,7 @@ export const locales: Record<Language, Translations> = {
         loginAction: "Se Connecter",
         registerAction: "S'inscrire",
         welcomeMessage: "Un seul compte. Tous vos outils d'étude.",
+        themeToggleLabel: "Basculer le thème",
     },
     es: {
         title: "Hub de Estudiantes",
@@ -52,5 +55,6 @@ export const locales: Record<Language, Translations> = {
         loginAction: "Iniciar Sesión",
         registerAction: "Registrarse",
         welcomeMessage: "Una cuenta. Todas tus herramientas de estudio.",
+        themeToggleLabel: "Cambiar tema",
     },
 };
