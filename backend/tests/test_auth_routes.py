@@ -100,7 +100,7 @@ def test_login_success(client: TestClient):
     # Verify cookie was attached to root domain
     cookie_header = response.headers.get("set-cookie")
     assert cookie_header is not None
-    assert "session_token=" in cookie_header
+    assert "hub_session=" in cookie_header
     assert "Domain=.hub.ca" in cookie_header
 
 
@@ -136,5 +136,5 @@ def test_logout(client: TestClient):
 
     cookie_header = response.headers.get("set-cookie")
     assert cookie_header is not None
-    assert "session_token=" in cookie_header
+    assert "hub_session=" in cookie_header
     assert "max-age=0" in cookie_header.lower() or "expires=" in cookie_header.lower()
