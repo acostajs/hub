@@ -14,6 +14,9 @@ select = [
 ]
 ignore = []
 
+[lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.params.Depends"]
+
 [format]
 quote-style = "double"
 indent-style = "space"
