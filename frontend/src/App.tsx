@@ -7,6 +7,7 @@ import {
     useLanguage,
 } from "./context/LanguageContext";
 import "./index.css";
+import { Login } from "./pages/Login/Login";
 import { Portal } from "./pages/Portal/Portal";
 import { Register } from "./pages/Register/Register";
 import {
@@ -65,21 +66,10 @@ function AppContent() {
 
     if (page === "login") {
         return (
-            <div className="layout-shell max-w-lg mx-auto py-16">
-                <div className="card-surface flex flex-col gap-space-md text-center">
-                    <h1 className="text-heading-lg">{t.title}</h1>
-                    <p className="text-body font-mono">
-                        {page.toUpperCase()} - {t.placeholder}
-                    </p>
-                    <button
-                        type="button"
-                        onClick={() => setPage("home")}
-                        className="btn-primary"
-                    >
-                        {t.backToHome}
-                    </button>
-                </div>
-            </div>
+            <Login
+                onNavigate={(target) => setPage(target)}
+                onLoginSuccess={handleMockLogin}
+            />
         );
     }
 
