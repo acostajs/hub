@@ -8,6 +8,12 @@ import {
 } from "./context/LanguageContext";
 import "./index.css";
 import { Portal } from "./pages/Portal/Portal";
+import { Register } from "./pages/Register/Register";
+import {
+    deleteAuthCookie,
+    hasAuthCookie,
+    setMockAuthCookie,
+} from "./utils/cookie";
 
 export type Page = "home" | "login" | "register" | "portal";
 
@@ -19,32 +25,6 @@ function getLocale(lang: Language) {
             return locales.es;
         default:
             return locales.en;
-    }
-}
-
-function hasAuthCookie(): boolean {
-    if (typeof document === "undefined") {
-        return false;
-    }
-    return document.cookie
-        .split(";")
-        .some((c) => c.trim().startsWith("hub_session="));
-}
-
-function setMockAuthCookie() {
-    if (typeof document !== "undefined") {
-        // Set cookie scoped to root domain for SSO simulation
-        // biome-ignore lint/suspicious/noDocumentCookie: Cookie manipulation is required for mock SSO simulation
-        document.cookie =
-            "hub_session=mock_sso_session_token_123; Path=/; Max-Age=3600;";
-    }
-}
-
-function deleteAuthCookie() {
-    if (typeof document !== "undefined") {
-        // biome-ignore lint/suspicious/noDocumentCookie: Cookie deletion is required to clear active SSO session
-        document.cookie =
-            "hub_session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     }
 }
 
@@ -79,7 +59,11 @@ function AppContent() {
         return <Portal onLogout={handleLogout} />;
     }
 
-    if (page === "login" || page === "register") {
+    if (page === "register") {
+        return <Register onNavigate={(target) => setPage(target)} />;
+    }
+
+    if (page === "login") {
         return (
             <div className="layout-shell max-w-lg mx-auto py-16">
                 <div className="card-surface flex flex-col gap-space-md text-center">
