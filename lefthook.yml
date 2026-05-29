@@ -1,21 +1,33 @@
 pre-commit:
-  parallel: false
+  parallel: true
   commands:
+
     frontend-biome:
-      glob: "frontend/**/*.{js,ts,jsx,tsx,json}"
-      run: bun --cwd frontend lint
+      root: "frontend/" 
+      glob: "*.{js,ts,jsx,tsx,json}"
+      run: bun biome check --write {staged_files}
+    
     frontend-typecheck:
-      glob: "frontend/**/*.{ts,tsx}"
-      run: bun run --cwd frontend tsc --noEmit
+      root: "frontend/"
+      glob: "*.{ts,tsx}"
+      run: bun tsc --noEmit
+
     backend-ruff-format:
-      glob: "backend/**/*.py"
-      run: uv run --project backend ruff format --check {staged_files}
+      root: "backend/" 
+      glob: "*.py"
+      run: uv run ruff format --check {staged_files}
+    
     backend-ruff-check:
-      glob: "backend/**/*.py"
-      run: uv run --project backend ruff check {staged_files}
+      root: "backend/"
+      glob: "*.py"
+      run: uv run ruff check {staged_files}
+    
     backend-typecheck:
-      glob: "backend/**/*.py"
-      run: uv run --project backend mypy backend/
+      root: "backend/"
+      glob: "*.py"
+      run: uv run mypy app/
+
     backend-test:
-      glob: "backend/**/*.py"
-      run: uv run --project backend pytest backend/
+      root: "backend/"
+      glob: "*.py"
+      run: uv run pytest
